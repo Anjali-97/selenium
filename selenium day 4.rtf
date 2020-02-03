@@ -1,0 +1,124 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil Calibri;}{\f2\fnil Courier New;}{\f3\fnil\fcharset0 Courier New;}}
+{\colortbl ;\red0\green0\blue192;\red232\green242\blue254;\red0\green0\blue0;}
+{\*\generator Riched20 10.0.14393}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\b\f0\fs28\lang9 Selenium day 4\par
+\fs22\par
+\fs24 1.    Selenium Form WebElement: TextBox, Submit Button, sendkeys(), click()\par
+\b0          TextBox, Submit Button, sendkeys(), click() Forms are the fundamental web elements to receive information from the website visitors. Web forms have different GUI elements like Text boxes, Password fields, Checkboxes, Radio buttons, dropdowns, file inputs, etc.\par
+      Web Driver provides the following two methods to find the elements.\par
+          findElement() \f1\endash  finds a single web element and returns as a WebElement object.\par
+\f0\lang16393          \f1\lang9 findElements() \endash  returns a list of WebElement objects matching the locator criteria.\par
+\f0\lang16393    Text Fields -  text boxes that accept typed values and show them as they are.\par
+    Submit buttons : They are used to submit the entire form to the server. \par
+    We can either use the click () method on the web element like a normal button or use the submit () method on any web element in the form or on the submit button itself.\par
+   Buttons :  The buttons can be accessed using the click() method.\lang9\par
+\b 2.       How to Select CheckBox and Radio Button in Selenium WebDriver\par
+\b0           We can use the ID attribute to select a Radio Button or a CheckBox. We've provided the Webdriver command to click which we can apply to both types of elements. \par
+Id and IsSelected() are the different selection methods .\par
+Java code example to select checkbox/radio button is :\par
+      WebElement target = driver.findElement(By.id("checkbox1"));\par
+       target.click();\par
+\par
+\b\par
+3.        How  to Click on Image in Selenium Webdriver\par
+\b0         Action class for this is :\par
+                       Actions act = new Actions(driver);\par
+                      act.moveToElement(xpath).click().build().perform();\par
+       xpath for this is :\par
+                        driver.findElement(By.Xpath("//i[@class='icon-logo edu-logo-style']")).click();\par
+\par
+\b 4.       How to Select Value from DropDown using Selenium Webdriver\par
+\b0           Select dropdown = new Select(driver.findElement(By.id("identifier")));\par
+          eg :  Select dropdown = new Select(driver.findElement(By.id("Marks")));\par
+\par
+\b 5.       Mouse Click & Keyboard Event: Action Class in Selenium Webdriver\par
+\b0           Handling special keyboard and mouse events are done using the Advanced User Interactions API. It contains the Actions and the Action classes that are needed when executing these events.\par
+        The following are the most commonly used keyboard and mouse events provided by the Actions class :\par
+   *  clickAndHold()   :\tab Clicks (without releasing) at the current mouse location.\par
+   *   contextClick()     :\tab Performs a context-click at the current mouse location. (Right Click Mouse Action)\par
+   *  doubleClick()      :\tab Performs a double-click at the current mouse location.\par
+   *  dragAndDrop(source, target)     :\tab Performs click-and-hold at the location of the source element, moves to the location of the target element, then releases the mouse.\par
+   *  dragAndDropBy(source, x-offset, y-offset)\tab Performs click-and-hold at the location of the source element, moves by a given offset, then releases the mouse.\par
+  *  keyDown(modifier_key)  :  Performs a modifier key press. Does not release the modifier key - subsequent interactions may assume it's kept pressed.\par
+ *   keyUp(modifier _key)    :     Performs a key release.\par
+ *   moveByOffset(x-offset, y-offset)   : \tab Moves the mouse from its current position (or 0,0) by the given offset.\par
+ *  moveToElement(toElement)    :    Moves the mouse to the middle of the element.\par
+ *  release()     : \tab Releases the depressed left mouse button at the current mouse location.\par
+ *  sendKeys(onElement, charsequence)    :\tab Sends a series of keystrokes onto the element.\par
+\par
+\b 6.       How to Upload & Download a File using Selenium Webdriver\par
+\b0       Uploading Files :\par
+    Uploading files in WebDriver is done by simply using the sendKeys() method on the file-select input field to enter the path to the file to be uploaded.\par
+      There is no need to simulate the clicking of the "Browse" button. WebDriver automatically enters the file path onto the file-selection text box of the <input type="file"> element\par
+     When setting the file path in your Java IDE, use the proper escape character for the back-slash.\par
+  driver.get(baseUrl);\par
+  WebElement uploadElement = driver.findElement(By.id("uploadfile_0"));\par
+Downloading Files :\par
+   WebDriver has no capability to access the Download dialog boxes presented by browsers when you click on a download link or button. \par
+   However, we can bypass these dialog boxes using a separate program called "wget".\par
+  Step 1 : Import the "java.io.IOException" package\par
+  Step 2 : Use getAttribute() to obtain the "href" value of the download link and save it as a String variable. In this case, we named the variable as "sourceLocation".\par
+      WebElement downloadElement = driver.FindElement(By.id("chrome - download"));\par
+     String sourceLocation = downloadButton.getAttribute("href");\par
+   Step 3 : Set-up the syntax for wget using the following command.\par
+    String wget_command = "cmd /c wget-P c :" + sourceLocation ;\par
+   Step 4 : Initiate the download process by calling wget from our WebDriver code.\par
+\par
+\par
+\par
+\b 7.       Robot Class in Selenium Webdriver\par
+\b0        It is used to generate native system input events for test automation ,self running demos and other applications where you need control over the mouse and keyboard.\par
+       The main use of this robot class is to facilitate automated testing for java platform implementations.\par
+      File uploading will be easy in robot class and it can handle pop ups as well.\par
+      Methods used to implement robot class are :\par
+     7.1 : KeyPress()\par
+     7.2 : KeyRelease()\par
+     7.3 : MouseMove()\par
+     7.4  : MousePress()\par
+     7.5 : MouseRelease()\par
+\b 8.       Handling iFrames in Selenium Webdriver: switchTo()\par
+\b0      IFrame is a web page which is embedded in another web page or an HTML document embedded inside another HTML document.\par
+     The IFrame is often used to insert content from another source, such as an advertisement, into a Web page. The <iframe> tag specifies an inline frame.\par
+   we can switch over the elements in frames using 3 ways.They are :\par
+  * By Index          * By Name or Id              * By Web Element\par
+Switch to the frame by Index   :  \par
+              Index is one of the attributes for the Iframe through which we can switch to it.Index of the iframe starts with '0'.\par
+            driver.switchTo().frame(0);\par
+            driver.switchTo().frame(1);\par
+Switch to frame by Name or Id   :\par
+           Name and ID are attributes of iframe through which we can switch to the it.\par
+            driver.switchTo().frame("iframe1");\par
+            driver.switchTo().frame("id of the element");\par
+Switch to the frame by Web Element  :\par
+            We can even switch to the iframe using web element.\par
+           driver.switchTo().frame(WebElement);\par
+                                 \par
+\b 9.       Implicit, Explicit, & Fluent Wait in Selenium WebDriver\par
+\b0        3 waits are available in WebDriver.They are :\par
+* implicit wait            * explicit wait             *fluent wait\par
+9.1  implicit wait \par
+    It will wait for all findElement() and findElements(). Webdriver tries to find element in DOM after every polling time, if element is not found then it wait for polling time(0.5 Seconds) and again try to find the element until maximum time defined is over. If element is not found then it will throw NoSuchElementException.\par
+Eg: \cf1\highlight2\f2 browser\cf3 .manage().timeouts().implicitlyWait(10,TimeUnit.\cf1\b\i SECONDS\cf3\b0\i0 );\cf0\highlight0\f0\par
+9.2 Explicit Wait\par
+  It is defined to  a particular web element. It will wait for single web element. For example if one of the web element takes more time than implicit wait then instead of changing implicit wait time it is better to define explicit wait.\par
+Eg: \cf1\highlight2\f2 browser\cf3 .manage().timeouts().\f3\lang16393 ex\f2\lang9 plicitlyWait(10,TimeUnit.\cf1\b\i SECONDS\cf3\b0\i0 );\cf0\highlight0\f0\par
+9.3 Fluent wait\par
+   Itis similar to explicit wait the difference is in fluent wait we can define polling time. And we can ignore the exception.\par
+\b 10.   Double click and Right Click in Selenium with Examples\par
+\b0       Double click action in Selenium web driver can be done using Actions class. \par
+      Actions class is a predefined class in Selenium web driver used to perform multiple keyboard and mouse operations such as Right Click, Drag and Drop, etc.\par
+     Initially, we need to instantiate an object of Actions class by passing the driver instance as a parameter\par
+   Using find element command, we need to find the locator of an element that we want to double click\par
+   Using the pre-defined double click method of Actions class, we need to perform double click operation on the web element\par
+     Actions actions = new Actions(driver);\par
+    WebElement elementLocator = driver.findElement(By.id("ID"));\par
+     actions.doubleClick(elementLocator).perform();\par
+      Right click action in Selenium web driver can be done using Actions class. Right Click operation is also called Context Click in Selenium.\par
+     Pre-defined method context click provided by Actions class is used to perform right click operation.\par
+     Actions actions = new Actions(driver);\par
+    WebElement elementLocator = driver.findElement(By.id("ID"));\par
+     actions.contextClick(elementLocator).perform();\par
+\par
+\par
+}
+ 
